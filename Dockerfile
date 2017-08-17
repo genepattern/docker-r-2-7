@@ -1,15 +1,8 @@
 FROM r-base:3.1.3
 
-COPY runS3OnBatchInstallPackages.sh /usr/local/bin/runS3OnBatch.sh
-COPY runLocalInstallPackages.sh /usr/local/bin/runLocal.sh
-
 RUN mkdir /build
 
-COPY Dockerfile /build/Dockerfile
-COPY jobdef.json /build/jobdef.json
-COPY RunR.java /build/RunR.java 
-COPY installPackages.R /build/source/installPackages.R
-COPY Cairo_1.5-9.tar.gz /build/Cairo_1.5-9.tar.gz
+COPY common/container_scripts/misc/Cairo_1.5-9.tar.gz /build/Cairo_1.5-9.tar.gz
 
 RUN apt-get update && apt-get upgrade --yes && \
     apt-get install build-essential --yes && \
@@ -30,7 +23,6 @@ RUN apt-get update && \
     apt-get install libgtk2.0-dev --yes  --force-yes && \
     apt-get install -y xvfb --yes --force-yes && \
     apt-get install -y libxt-dev --yes  --force-yes
-    
 
 RUN  mkdir packages && \
     cd packages && \
@@ -44,6 +36,14 @@ RUN  mkdir packages && \
     apt-get install libxml2-dev --yes && \
     apt-get install libcurl4-gnutls-dev --yes && \
     R CMD INSTALL /build/Cairo_1.5-9.tar.gz
+
+COPY common/container_scripts/runS3OnBatch.sh /usr/local/bin/runS3OnBatch.sh
+COPY common/container_scripts/runLocal.sh /usr/local/bin/runLocal.sh
+COPY Dockerfile /build/Dockerfile
+COPY jobdef.json /build/jobdef.json
+COPY common/container_scripts/misc/RunR.java /build/RunR.java
+COPY common/container_scripts/misc/installPackages.R-2 /build/source/installPackages.R
+
 
 RUN  cd /build && \
     javac RunR.java
