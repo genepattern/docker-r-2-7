@@ -43,6 +43,8 @@ COPY Dockerfile /build/Dockerfile
 COPY jobdef.json /build/jobdef.json
 COPY common/container_scripts/misc/RunR.java /build/RunR.java
 COPY common/container_scripts/misc/installPackages.R-2 /build/source/installPackages.R
+COPY runS3Batch_prerun_custom.sh /usr/local/bin/runS3Batch_prerun_custom.sh
+COPY runS3Batch_postrun_custom.sh /usr/local/bin/runS3Batch_postrun_custom.sh
 
 
 RUN  cd /build && \
