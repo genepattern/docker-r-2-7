@@ -8,7 +8,7 @@ WORKING_DIR=$PWD/job_1111
 RHOME=/packages/R-2.7.2/
 
 
-COMMAND_LINE="java -cp /build -DR_HOME=/packages/R-2.7.2/ -Dr_flags="'--no-save --quiet --slave --no-restore'" RunR $TASKLIB/SurvivalCurve.R SurvivalCurve surv.txt -c surv.cls surv time censor -fcls.clinical F automatic -lt -lc 1 1 -m 0 1 log 0 T left-bottom"
+COMMAND_LINE="java -cp /build -DR_HOME=/packages/R-2.7.2/ -Dr_flags=\"--no-save --quiet --slave --no-restore\" RunR $TASKLIB/SurvivalCurve.R SurvivalCurve surv.txt -c surv.cls surv time censor -fcls.clinical F automatic -lt -lc 1 1 -m 0 1 log 0 T left-bottom"
 
 DOCKER_CONTAINER=genepattern/docker-r-2-7
 
