@@ -1,0 +1,3 @@
+Error in SurvivalCurve("surv.txt", "-c", "surv.cls", "surv", "time", "censor",  : 
+  unused argument(s) ("left-bottom")
+Execution halted
