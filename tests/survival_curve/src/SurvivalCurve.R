@@ -14,14 +14,10 @@ message <- function (..., domain = NULL, appendLF = TRUE) {
 SurvivalCurve <- function(
   input.surv.data.filename,
   input.cls.filename,
-
   output.name="SurvivalCurve",
-
   time.field="time",
   censor.field="status",
-
   cls.field="NA",
-
   print.fit.results="F",
                              
   # plot
@@ -39,6 +35,31 @@ SurvivalCurve <- function(
   legend.position="left-bottom"
   )
 {
+  print(paste("input data is ", input.surv.data.filename));
+  print(paste("cls filename is ", input.cls.filename))
+  print(paste("output.name is ", output.name))
+  print(paste("time.field is ", time.field))
+  print(paste("censor.field is ", censor.field))
+  print(paste("cls.field is ", cls.field))
+  print(paste("print.fit.results is", print.fit.results))
+  print(paste("line.type.col.assign is ", line.type.col.assign))
+  print(paste("line.type.specify is ", line.type.specify))
+  print(paste("line.col.specify is ", line.col.specify))
+  print(paste(" line.width is ",  line.width))
+  print(paste("time.conversion is ", time.conversion))
+  print(paste("max.time is", max.time))
+  print(paste("surv.function.lower is ", surv.function.lower))
+  print(paste("surv.function.higher is ", surv.function.higher))
+  print(paste("curve.type is ", curve.type))
+  print(paste("show.conf.interval is ", show.conf.interval))
+  print(paste("add.legend is ", add.legend))
+  print(paste("legend.position is ", legend.position))
+  print(capabilities())
+
+  print(R.Version())
+
+  library(Cairo)
+
 
   # Advanced options
 
@@ -96,6 +117,7 @@ SurvivalCurve <- function(
   }
   mark.type<-as.integer(mark.type)
   time.conversion<-as.numeric(time.conversion)
+
 
   if(max.time == "-m")
   {

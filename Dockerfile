@@ -21,14 +21,18 @@ RUN apt-get update && \
     apt-get install libcairo2-dev --yes  --force-yes && \
     apt-get install libgtk2.0-dev --yes  --force-yes && \
     apt-get install -y xvfb --yes --force-yes && \
-    apt-get install -y libxt-dev --yes  --force-yes
+    apt-get install -y libxt-dev --yes  --force-yes && \
+    apt-get install tcl8.5-dev --yes --force-yes &&\
+    apt-get install tk8.5-dev --yes --force-yes
+
+
 
 RUN  mkdir packages && \
     cd packages && \
     curl -O http://cran.r-project.org/src/base/R-2/R-2.7.2.tar.gz && \
     tar xvf R-2.7.2.tar.gz && \
     cd R-2.7.2 && \
-    ./configure --with-x=no && \
+    ./configure --with-x=no --with-tcl-config=/usr/lib/x86_64-linux-gnu/tcl8.5/tclConfig.sh --with-tk-config=/usr/lib/x86_64-linux-gnu/tk8.5/tkConfig.sh && \
     make && \
     make check && \
     make install && \
@@ -51,4 +55,3 @@ RUN  cd /build && \
 
  
 CMD ["/usr/local/bin/runS3OnBatch.sh" ]
-
