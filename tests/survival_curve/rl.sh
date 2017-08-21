@@ -6,7 +6,9 @@ S3_ROOT=s3://moduleiotest
 WORKING_DIR=$PWD/job_1111
 
 
-COMMAND_LINE="java -cp /build -DR_HOME=/usr/local/lib64/R -Dr_flags=/'--no-save --quiet --slave --no-restore/' RunR $TASKLIB/SurvivalCurve.R SurvivalCurve $INPUT_FILE_DIRECTORIES/surv.txt -c$INPUT_FILE_DIRECTORIES/surv.cls surv time censor -fcensor F  automatic -lt -lc 1 1 -m 0 1 log 0 T left-bottom"
+RH='$R_HOME'
+
+COMMAND_LINE="java -cp /build -DR_HOME=\"$RH\" -Dr_flags=/'--no-save --quiet --slave --no-restore/' RunR $TASKLIB/SurvivalCurve.R SurvivalCurve $INPUT_FILE_DIRECTORIES/surv.txt -c$INPUT_FILE_DIRECTORIES/surv.cls surv time censor -fcensor F  automatic -lt -lc 1 1 -m 0 1 log 0 T left-bottom"
 
 
 echo "COMMAND IS " $COMMAND_LINE

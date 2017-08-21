@@ -51,7 +51,8 @@ COPY runS3Batch_postrun_custom.sh /usr/local/bin/runS3Batch_postrun_custom.sh
 
 RUN  cd /build && \
     javac RunR.java && \
-    chmod ugo+x /usr/local/bin/runS3OnBatch.sh  
-
+    chmod ugo+x /usr/local/bin/runS3OnBatch.sh 
+ 
+ENV R_HOME=/usr/local/lib64/R
  
 CMD ["/usr/local/bin/runS3OnBatch.sh" ]
