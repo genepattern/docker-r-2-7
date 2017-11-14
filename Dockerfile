@@ -54,5 +54,5 @@ RUN  cd /build && \
     chmod ugo+x /usr/local/bin/runS3OnBatch.sh 
  
 ENV R_HOME=/usr/local/lib64/R
- 
+ENV R_HOME_DIR=/usr/local/lib64/R 
 CMD ["/usr/local/bin/runS3OnBatch.sh" ]
